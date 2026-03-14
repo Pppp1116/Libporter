@@ -1,0 +1,36 @@
+# Meson build directories
+build/
+builddir/
+
+# Ninja build files
+build.ninja
+
+# Meson internal data
+meson-info/
+meson-logs/
+meson-private/
+
+# Compilation database
+compile_commands.json
+
+# Object files
+*.o
+*.obj
+
+# Executables
+*.out
+*.exe
+binary
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+
+# SSH keys (never commit these)
+key
+key.pub
