@@ -1,0 +1,26 @@
+BasedOnStyle: LLVM
+IndentWidth: 6
+TabWidth: 6
+UseTab: Never
+ColumnLimit: 96
+SeparateDefinitionBlocks: Always
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterControlStatement: false
+  AfterStruct: true
+  AfterEnum: true
+  AfterUnion: true
+  BeforeElse: false
+
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 2
