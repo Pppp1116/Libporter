@@ -34,3 +34,5 @@ binary
 # SSH keys (never commit these)
 key
 key.pub
+key
+key.pub
