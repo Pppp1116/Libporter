@@ -1,5 +1,5 @@
 # Libporter
-
+⚠️ Early development – architecture may change.
 Libporter is a personal project to build a universal package manager for C.
 
 ## About

@@ -11,6 +11,8 @@ typedef struct
       char name[70];
       u8 id;
       char description[500];
+      char source_url[500];
+      char sha256[65];
 
 } package;
 
@@ -21,6 +23,8 @@ char* create_JSON(const package* pkg)
       cJSON_AddStringToObject(root, "name", pkg->name);
       cJSON_AddNumberToObject(root, "id", pkg->id);
       cJSON_AddStringToObject(root, "description", pkg->description);
+      cJSON_AddStringToObject(root, "sha256", pkg->sha256);
+      cJSON_AddStringToObject(root, "source_url", pkg->source_url);
       char* path = cJSON_Print(root);
       return path;
 }
