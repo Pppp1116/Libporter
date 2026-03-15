@@ -24,9 +24,10 @@ add_project_arguments(
 
 cjson_sources = files('libs/cJSON.c')
 funcs_sources = files('libs/funcs.c')
+github_sources = files('libs/Github.c')
 
 executable('Libporter', 'src/main.c',
-  sources: [funcs_sources, cjson_sources],
+  sources: [funcs_sources, cjson_sources, github_sources],
   dependencies: [
     dependency('libcurl'),
     dependency('uuid')

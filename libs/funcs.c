@@ -8,7 +8,8 @@
 #include <string.h> // Essencial para strcmp
 #include <stdbool.h>
 
-int download(const char* name);
+int add_library(const char* name, const char* source_url, const char* description);
+char *new_id(package *pkg);
 
 
 
@@ -22,6 +23,7 @@ char* create_JSON(const package* pkg)
       cJSON_AddStringToObject(root, "sha256", pkg->sha256);
       cJSON_AddStringToObject(root, "source_url", pkg->source_url);
       char* path = cJSON_Print(root);
+      cJSON_Delete(root);
       return path;
 }
 
@@ -49,8 +51,38 @@ char* read_file(const char* path)
       return buffer; // Lembra-te de fazer free() no main
 }
 
-int download(const char* name)
+int add_library(const char* name, const char* source_url, const char* description)
 {
-    printf("Downloading package: %s\n", name);
-    return 0;
+    package new_pkg;
+    
+    // Initialize package - allocate memory for name
+    new_pkg.name = malloc(strlen(name) + 1);
+    if (!new_pkg.name) {
+        return 1;
+    }
+    strcpy(new_pkg.name, name);
+    
+    strncpy(new_pkg.source_url, source_url, sizeof(new_pkg.source_url) - 1);
+    new_pkg.source_url[sizeof(new_pkg.source_url) - 1] = '\0';
+    
+    strncpy(new_pkg.description, description, sizeof(new_pkg.description) - 1);
+    new_pkg.description[sizeof(new_pkg.description) - 1] = '\0';
+    
+    // Generate unique ID
+    new_id(&new_pkg);
+    
+    // Set empty sha256 for now
+    memset(new_pkg.sha256, 0, sizeof(new_pkg.sha256));
+    
+    // Create JSON representation
+    char* json_data = create_JSON(&new_pkg);
+    if (json_data) {
+        printf("Library added successfully:\n%s\n", json_data);
+        free(json_data);
+    }
+    
+    // Clean up allocated memory
+    free(new_pkg.name);
+    
+    return json_data ? 0 : 1;
 }

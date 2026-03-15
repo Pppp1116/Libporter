@@ -5,12 +5,14 @@
 #include <uuid/uuid.h>
 
 int download(const char* name);
+int add_library(const char* name, const char* source_url, const char* description);
 
 void help(void)
 {
     printf("-help\n");
     printf("-S <name>\n");
     printf("-Syu\n");
+    printf("-A <name> <source_url> <description>\n");
 }
 
 char *new_id(package *pkg)
@@ -37,6 +39,18 @@ int main(int argc, char *argv[])
         int rc = download(argv[2]);
         curl_global_cleanup();
         return rc;
+    }
+
+    if (argc == 5 && strcmp(argv[1], "-A") == 0)
+    {
+        int rc = add_library(argv[2], argv[3], argv[4]);
+        curl_global_cleanup();
+        return rc;
+    }
+
+    if (argc == 3 && strcmp(argv[1], "-Syu") == 0)
+    {
+        
     }
 
     help();
