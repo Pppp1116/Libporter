@@ -1,26 +1,61 @@
+---
 BasedOnStyle: LLVM
-IndentWidth: 6
-TabWidth: 6
+Language: Cpp
+
+IndentWidth: 4
+TabWidth: 4
 UseTab: Never
-ColumnLimit: 96
-SeparateDefinitionBlocks: Always
+ContinuationIndentWidth: 4
+
+ColumnLimit: 88
 
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterFunction: true
-  AfterControlStatement: false
-  AfterStruct: true
-  AfterEnum: true
-  AfterUnion: true
-  BeforeElse: false
+    AfterFunction: true
+    AfterControlStatement: Always
+    AfterStruct: true
+    AfterEnum: true
+    AfterUnion: true
+    BeforeElse: true
+    BeforeCatch: true
+    IndentBraces: false
+
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
 
 DerivePointerAlignment: false
 PointerAlignment: Left
 
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortFunctionsOnASingleLine: None
-AllowShortLoopsOnASingleLine: false
-AllowShortBlocksOnASingleLine: Never
+SpaceBeforeParens: ControlStatements
+SpaceBeforeAssignmentOperators: true
+SpacesInParens: Never
 
-KeepEmptyLinesAtTheStartOfBlocks: false
-MaxEmptyLinesToKeep: 2
+AlignConsecutiveAssignments:
+    Enabled: false
+AlignConsecutiveDeclarations:
+    Enabled: false
+
+BinPackArguments: false
+BinPackParameters: OnePerLine
+
+IndentCaseLabels: true
+IndentCaseBlocks: true
+
+KeepEmptyLines:
+    AtStartOfBlock: false
+    AtStartOfFile: true
+    AtEndOfFile: false
+MaxEmptyLinesToKeep: 1
+
+SeparateDefinitionBlocks: Always
+InsertNewlineAtEOF: true
+
+SortIncludes:
+    Enabled: true
+
+ReflowComments: false
+
+Standard: Latest
+...

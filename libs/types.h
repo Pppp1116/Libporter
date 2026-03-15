@@ -25,4 +25,14 @@ typedef double f64;
 typedef size_t usize;
 typedef ptrdiff_t isize;
 
+
+typedef struct
+{
+    char *name;
+    char id[37];
+    char description[500];
+    char source_url[500];
+    char sha256[65];
+} package;
+
 #endif

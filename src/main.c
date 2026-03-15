@@ -1,16 +1,45 @@
-#include "libs/funcs.c"
 #include "libs/types.h"
+#include <curl/curl.h>
 #include <stdio.h>
 #include <string.h>
-#include <libs/cJSON.h>
-#include <libs/types.h>
+#include <uuid/uuid.h>
 
-int main(int argc, char* argv[])
+int download(const char* name);
+
+void help(void)
 {
-      // arg 0 is the app q
-      if (argc > 1 && strcmp(argv[1], "-help") == 0) {
-            printf("-help \n");
-            printf("-S <name>\n");
-            printf("-Syu update app\n");
-      }
+    printf("-help\n");
+    printf("-S <name>\n");
+    printf("-Syu\n");
+}
+
+char *new_id(package *pkg)
+{
+    uuid_t id;
+    uuid_generate_random(id);
+    uuid_unparse_lower(id, pkg->id);
+    return pkg->id;
+}
+
+int main(int argc, char *argv[])
+{
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+
+    if (argc == 2 && strcmp(argv[1], "-help") == 0)
+    {
+        help();
+        curl_global_cleanup();
+        return 0;
+    }
+
+    if (argc == 3 && strcmp(argv[1], "-S") == 0)
+    {
+        int rc = download(argv[2]);
+        curl_global_cleanup();
+        return rc;
+    }
+
+    help();
+    curl_global_cleanup();
+    return 1;
 }

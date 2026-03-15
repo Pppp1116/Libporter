@@ -1,33 +1,32 @@
 #include "libs/cJSON.h"
 #include "libs/types.h"
+#include <curl/curl.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h> // Essencial para malloc e free
 #include <string.h> // Essencial para strcmp
+#include <stdbool.h>
 
-typedef struct
-{
-      char name[70];
-      u8 id;
-      char description[500];
-      char source_url[500];
-      char sha256[65];
+int download(const char* name);
 
-} package;
+
 
 // fucntion is responsible by getting a struct and and returning a path to the saved file
 char* create_JSON(const package* pkg)
 {
       cJSON* root = cJSON_CreateObject();
       cJSON_AddStringToObject(root, "name", pkg->name);
-      cJSON_AddNumberToObject(root, "id", pkg->id);
+      cJSON_AddStringToObject(root, "id", pkg->id);
       cJSON_AddStringToObject(root, "description", pkg->description);
       cJSON_AddStringToObject(root, "sha256", pkg->sha256);
       cJSON_AddStringToObject(root, "source_url", pkg->source_url);
       char* path = cJSON_Print(root);
       return path;
 }
+
+
+
 
 char* read_file(const char* path)
 {
@@ -48,4 +47,10 @@ char* read_file(const char* path)
 
       fclose(f);
       return buffer; // Lembra-te de fazer free() no main
+}
+
+int download(const char* name)
+{
+    printf("Downloading package: %s\n", name);
+    return 0;
 }

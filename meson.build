@@ -1,5 +1,5 @@
 project(
-  'binary',
+  'Libporter',
   'c',
   default_options: [
     'c_std=c23',
@@ -22,4 +22,13 @@ add_project_arguments(
   language: 'c'
 )
 
-executable('binary', 'src/main.c')
+cjson_sources = files('libs/cJSON.c')
+funcs_sources = files('libs/funcs.c')
+
+executable('Libporter', 'src/main.c',
+  sources: [funcs_sources, cjson_sources],
+  dependencies: [
+    dependency('libcurl'),
+    dependency('uuid')
+  ]
+)
